@@ -38,7 +38,7 @@ public class Ejercicio5_notasAlumnosMenu {
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
 		String[] opcionesMenu;
-		opcionesMenu = plantilaOpciones("1.Calcular nota media", "2.Ver la nota mas baja", "3.Ver la nota mas baja",
+		opcionesMenu = plantilaOpciones("1.Calcular nota media", "2.Ver la nota mas alta", "3.Ver la nota mas baja",
 				"4.Numero de alumnos por encima de la media", "5.Numero de alumnos por debajo de la media");
 
 		for (int i = 0; i < opcionesMenu.length; i++) {
@@ -54,15 +54,15 @@ public class Ejercicio5_notasAlumnosMenu {
 		Scanner sc = new Scanner(System.in);
 		do {
 			switch (opcionUsuario) {
-			case 1:
+			case 1: calcularNotaMedia();
 				break;
-			case 2:
+			case 2: verNotaMasAlta();
 				break;
-			case 3:
+			case 3: verNotaMasBaja():
 				break;
-			case 4:
+			case 4: alumnosPorEncimaMedia();
 				break;
-			case 5:
+			case 5: alumnosPorDebajoMedia();
 				break;
 			default:
 				System.out.println("Introduzca una opcion disponible");
@@ -71,6 +71,41 @@ public class Ejercicio5_notasAlumnosMenu {
 		} while (opcionUsuario > 5 || opcionUsuario <= 0);
 			
 		
+	}
+
+	private static void alumnosPorDebajoMedia(int[]arrayNotas) {
+		
+		for (int i = 0; i < arrayNotas.length; i++) {
+			int j = arrayNotas[i];
+			
+		}
+		
+	}
+
+	private static void alumnosPorEncimaMedia() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void verNotaMasBaja() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static int verNotaMasAlta(int[]arrayNotas) {
+		int resultado=0;
+		return resultado;
+		
+		
+	}
+
+	private static int calcularNotaMedia(int []arrayNotas) {
+		int sumatorio=0, resultado;
+		for (int i = 0; i < arrayNotas.length; i++) {
+			sumatorio=+arrayNotas[i];
+		}
+		resultado=sumatorio/10;
+		return resultado;
 	}
 
 	private static String[] plantilaOpciones(String opcion1, String opcion2, String opcion3, String opcion4,
