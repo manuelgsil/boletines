@@ -31,10 +31,10 @@ public class Ejercicio5_notasAlumnosMenu {
 		 * for (int i : notasAlumnos) { System.out.print(i+" "); }
 		 */
 
-		menuPrincipal();
+		menuPrincipal(notasAlumnos);
 	}
 
-	private static void menuPrincipal() {
+	private static void menuPrincipal(int[] notasAlumnos) {
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
 		String[] opcionesMenu;
@@ -45,66 +45,80 @@ public class Ejercicio5_notasAlumnosMenu {
 			System.out.println(opcionesMenu[i]);
 		}
 		System.out.print("Escoja una opcion: ");
-		opcion=sc.nextInt();
-		eleccion(opcion);
+		opcion = sc.nextInt();
+		eleccion(opcion, notasAlumnos);
 
 	}
 
-	private static void eleccion(int opcionUsuario) {
+	private static void eleccion(int opcionUsuario, int[] notas) {
 		Scanner sc = new Scanner(System.in);
+		int media = calcularNotaMedia(notas);// la colocamos aqui porque la necesitamos para todo
+		int resul;
 		do {
 			switch (opcionUsuario) {
-			case 1: calcularNotaMedia();
+			case 1:
+				System.out.println(media);
+
 				break;
-			case 2: verNotaMasAlta();
+			case 2:
+				resul = verNotaMasAlta(notas);
+				System.out.println(resul);
 				break;
-			case 3: verNotaMasBaja():
+			case 3:
+				verNotaMasBaja(notas);
 				break;
-			case 4: alumnosPorEncimaMedia();
+			case 4:
+				alumnosPorEncimaMedia();
 				break;
-			case 5: alumnosPorDebajoMedia();
+			case 5:
+				// alumnosPorDebajoMedia();
 				break;
 			default:
 				System.out.println("Introduzca una opcion disponible");
-				opcionUsuario=sc.nextInt();
+				opcionUsuario = sc.nextInt();
 			}
 		} while (opcionUsuario > 5 || opcionUsuario <= 0);
-			
-		
+
 	}
 
-	private static void alumnosPorDebajoMedia(int[]arrayNotas) {
-		
+	private static void alumnosPorDebajoMedia(int[] arrayNotas) {
+
 		for (int i = 0; i < arrayNotas.length; i++) {
 			int j = arrayNotas[i];
-			
+
 		}
-		
+
 	}
 
 	private static void alumnosPorEncimaMedia() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
-	private static void verNotaMasBaja() {
-		// TODO Auto-generated method stub
-		
+	private static void verNotaMasBaja(int[] notas) {
+
 	}
 
-	private static int verNotaMasAlta(int[]arrayNotas) {
-		int resultado=0;
-		return resultado;
-		
-		
-	}
+	private static int verNotaMasAlta(int[] arrayNotas) {
+		int posicion = 0, notaMasAlta = arrayNotas[posicion];
 
-	private static int calcularNotaMedia(int []arrayNotas) {
-		int sumatorio=0, resultado;
 		for (int i = 0; i < arrayNotas.length; i++) {
-			sumatorio=+arrayNotas[i];
+			if (arrayNotas[i] > notaMasAlta) 
+				notaMasAlta = arrayNotas[i];
+					
+		
 		}
-		resultado=sumatorio/10;
+
+		return notaMasAlta;
+
+	}
+
+	private static int calcularNotaMedia(int[] arrayNotas) {
+		int sumatorio = 0, resultado;
+		for (int i = 0; i < arrayNotas.length; i++) {
+			sumatorio = +arrayNotas[i];
+		}
+		resultado = sumatorio / 10;
 		return resultado;
 	}
 
