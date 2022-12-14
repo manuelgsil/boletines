@@ -8,11 +8,12 @@ public class Ejercicio5_notasAlumnosMenu {
 
 		/*
 		 * Deseamos realizar un programa para el cálculo de ciertos valores con las
-		 * notas de la clase. Queremos calcular la nota media, la nota más alta, la más
-		 * baja, cuántos alumnos tienen una nota superior a la media y cuántos tienen
-		 * una nota inferior a la media. El programa debe presentar un menú de opciones
-		 * para que el usuario elija lo que desee hacer y también se presentarán los
-		 * resultados. El array de notas se generará aleatoriamente con notas de 1 a 10.
+		 * notas de la clase. Queremos calcular la nota media, la nota más alta, la
+		 * más baja, cuántos alumnos tienen una nota superior a la media y cuántos
+		 * tienen una nota inferior a la media. El programa debe presentar un menú de
+		 * opciones para que el usuario elija lo que desee hacer y también se
+		 * presentarán los resultados. El array de notas se generará aleatoriamente
+		 * con notas de 1 a 10.
 		 */
 
 		int[] notasAlumnos = new int[10];
@@ -44,9 +45,12 @@ public class Ejercicio5_notasAlumnosMenu {
 		for (int i = 0; i < opcionesMenu.length; i++) {
 			System.out.println(opcionesMenu[i]);
 		}
-		System.out.print("Escoja una opcion: ");
-		opcion = sc.nextInt();
-		eleccion(opcion, notasAlumnos);
+
+		do {
+			System.out.print("Escoja una opcion: ");
+			opcion = sc.nextInt();
+			eleccion(opcion, notasAlumnos);
+		} while (opcion != 0);
 
 	}
 
@@ -54,59 +58,85 @@ public class Ejercicio5_notasAlumnosMenu {
 		Scanner sc = new Scanner(System.in);
 		int media = calcularNotaMedia(notas);// la colocamos aqui porque la necesitamos para todo
 		int resul;
-		do {
-			switch (opcionUsuario) {
-			case 1:
-				System.out.println(media);
 
-				break;
-			case 2:
-				resul = verNotaMasAlta(notas);
-				System.out.println(resul);
-				break;
-			case 3:
-				verNotaMasBaja(notas);
-				break;
-			case 4:
-				alumnosPorEncimaMedia();
-				break;
-			case 5:
-				// alumnosPorDebajoMedia();
-				break;
-			default:
-				System.out.println("Introduzca una opcion disponible");
-				opcionUsuario = sc.nextInt();
-			}
-		} while (opcionUsuario > 5 || opcionUsuario <= 0);
-
-	}
-
-	private static void alumnosPorDebajoMedia(int[] arrayNotas) {
-
-		for (int i = 0; i < arrayNotas.length; i++) {
-			int j = arrayNotas[i];
-
+		switch (opcionUsuario) {
+		case 1:
+			System.out.println("-----------------------------");
+			System.out.println("La nota media ha sido de: " + media + " |");
+			System.out.println("-----------------------------");
+			break;
+		case 2:
+			resul = verNotaMasAlta(notas);
+			System.out.println("---------------------------");
+			System.out.println("La nota mas alta es: " + resul + " |");
+			System.out.println("---------------------------");
+			break;
+		case 3:
+			resul = verNotaMasBaja(notas);
+			System.out.println("------------------------");
+			System.out.println("La nota mas baja es: " + resul + " |");
+			System.out.println("------------------------");
+			break;
+		case 4:
+			resul=alumnosPorEncimaMedia(notas);
+			System.out.println("------------------------");
+			System.out.println("El numero de alumnos por encima de la media: " + resul + " |");
+			System.out.println("------------------------");
+			break;
+		case 5:
+			 resul=alumnosPorDebajoMedia(notas);
+			 System.out.println("Numero de alumnos por debajo de la media: "+resul);
+			 System.out.println("------------------------");
+				System.out.println("El numero de alumnos por debajo de la media:  " + resul + " |");
+				System.out.println("------------------------");
+			break;
+		case 0:
+			break;
+		default:
+			System.out.println("Introduzca una opcion disponible");
+			System.out.println("Si desea salir introduzca 0");
 		}
 
 	}
 
-	private static void alumnosPorEncimaMedia() {
-		// TODO Auto-generated method stub
+	private static int alumnosPorDebajoMedia(int[] arrayNotas) {
+		int notamedia = calcularNotaMedia(arrayNotas);
+		int cantidadAlumnosDebajoMedia = 0;
+		for (int i = 0; i < arrayNotas.length; i++) {
+			if (arrayNotas[i] < notamedia)
+				cantidadAlumnosDebajoMedia++;
+		}
+		return cantidadAlumnosDebajoMedia;
+	}
+
+	private static int alumnosPorEncimaMedia(int[]arrayNotas) {
+		int notamedia = calcularNotaMedia(arrayNotas);
+		int cantidadAlumnosEncimaMedia = 0;
+		for (int i = 0; i < arrayNotas.length; i++) {
+			if (arrayNotas[i] > notamedia)
+				cantidadAlumnosEncimaMedia++;
+		}
+		return cantidadAlumnosEncimaMedia;
 
 	}
 
-	private static void verNotaMasBaja(int[] notas) {
+	private static int verNotaMasBaja(int[] notas) {
+		int notaMasBaja = notas[0];
 
+		for (int i = 0; i < notas.length; i++) {
+			if (notas[i] < notaMasBaja)
+				notaMasBaja = notas[i];
+		}
+
+		return notaMasBaja;
 	}
 
 	private static int verNotaMasAlta(int[] arrayNotas) {
-		int posicion = 0, notaMasAlta = arrayNotas[posicion];
+		int notaMasAlta = arrayNotas[0];
 
 		for (int i = 0; i < arrayNotas.length; i++) {
-			if (arrayNotas[i] > notaMasAlta) 
+			if (arrayNotas[i] > notaMasAlta)
 				notaMasAlta = arrayNotas[i];
-					
-		
 		}
 
 		return notaMasAlta;
@@ -116,7 +146,7 @@ public class Ejercicio5_notasAlumnosMenu {
 	private static int calcularNotaMedia(int[] arrayNotas) {
 		int sumatorio = 0, resultado;
 		for (int i = 0; i < arrayNotas.length; i++) {
-			sumatorio = +arrayNotas[i];
+			sumatorio = arrayNotas[i] + sumatorio;
 		}
 		resultado = sumatorio / 10;
 		return resultado;
