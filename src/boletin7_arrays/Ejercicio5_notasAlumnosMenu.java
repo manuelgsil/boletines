@@ -16,9 +16,8 @@ public class Ejercicio5_notasAlumnosMenu {
 		 * con notas de 1 a 10.
 		 */
 
-		int[] notasAlumnos = new int[10];
-		int[] menuResultados = new int[5]; // Creamos un array que almacenará los resultados de la opcion del menu
-
+		double[] notasAlumnos = new double[10];
+		
 		// 1.-Creamos un metodo para generar las notas aleatorias comprendias entre 1 y
 		// 10
 		// numAleatorio1_10();
@@ -35,7 +34,7 @@ public class Ejercicio5_notasAlumnosMenu {
 		menuPrincipal(notasAlumnos);
 	}
 
-	private static void menuPrincipal(int[] notasAlumnos) {
+	private static void menuPrincipal(double[] notasAlumnos) {
 		Scanner sc = new Scanner(System.in);
 		int opcion = 0;
 		String[] opcionesMenu;
@@ -54,10 +53,11 @@ public class Ejercicio5_notasAlumnosMenu {
 
 	}
 
-	private static void eleccion(int opcionUsuario, int[] notas) {
+	private static void eleccion(int opcionUsuario, double[] notas) {
 		Scanner sc = new Scanner(System.in);
-		int media = calcularNotaMedia(notas);// la colocamos aqui porque la necesitamos para todo
+		double media = calcularNotaMedia(notas);// la colocamos aqui porque la necesitamos para todo
 		int resul;
+		double resultadoDecimal;
 
 		switch (opcionUsuario) {
 		case 1:
@@ -66,15 +66,15 @@ public class Ejercicio5_notasAlumnosMenu {
 			System.out.println("-----------------------------");
 			break;
 		case 2:
-			resul = verNotaMasAlta(notas);
+			resultadoDecimal = verNotaMasAlta(notas);
 			System.out.println("---------------------------");
-			System.out.println("La nota mas alta es: " + resul + " |");
+			System.out.println("La nota mas alta es: " + resultadoDecimal + " |");
 			System.out.println("---------------------------");
 			break;
 		case 3:
-			resul = verNotaMasBaja(notas);
+			resultadoDecimal = verNotaMasBaja(notas);
 			System.out.println("------------------------");
-			System.out.println("La nota mas baja es: " + resul + " |");
+			System.out.println("La nota mas baja es: " + resultadoDecimal + " |");
 			System.out.println("------------------------");
 			break;
 		case 4:
@@ -99,8 +99,8 @@ public class Ejercicio5_notasAlumnosMenu {
 
 	}
 
-	private static int alumnosPorDebajoMedia(int[] arrayNotas) {
-		int notamedia = calcularNotaMedia(arrayNotas);
+	private static int alumnosPorDebajoMedia(double[] arrayNotas) {
+		double notamedia = calcularNotaMedia(arrayNotas);
 		int cantidadAlumnosDebajoMedia = 0;
 		for (int i = 0; i < arrayNotas.length; i++) {
 			if (arrayNotas[i] < notamedia)
@@ -109,8 +109,8 @@ public class Ejercicio5_notasAlumnosMenu {
 		return cantidadAlumnosDebajoMedia;
 	}
 
-	private static int alumnosPorEncimaMedia(int[]arrayNotas) {
-		int notamedia = calcularNotaMedia(arrayNotas);
+	private static int alumnosPorEncimaMedia(double[]arrayNotas) {
+		double notamedia = calcularNotaMedia(arrayNotas);
 		int cantidadAlumnosEncimaMedia = 0;
 		for (int i = 0; i < arrayNotas.length; i++) {
 			if (arrayNotas[i] > notamedia)
@@ -120,8 +120,8 @@ public class Ejercicio5_notasAlumnosMenu {
 
 	}
 
-	private static int verNotaMasBaja(int[] notas) {
-		int notaMasBaja = notas[0];
+	private static double verNotaMasBaja(double[] notas) {
+		double notaMasBaja = notas[0];
 
 		for (int i = 0; i < notas.length; i++) {
 			if (notas[i] < notaMasBaja)
@@ -131,8 +131,8 @@ public class Ejercicio5_notasAlumnosMenu {
 		return notaMasBaja;
 	}
 
-	private static int verNotaMasAlta(int[] arrayNotas) {
-		int notaMasAlta = arrayNotas[0];
+	private static double verNotaMasAlta(double[] arrayNotas) {
+		double notaMasAlta = arrayNotas[0];
 
 		for (int i = 0; i < arrayNotas.length; i++) {
 			if (arrayNotas[i] > notaMasAlta)
@@ -143,8 +143,8 @@ public class Ejercicio5_notasAlumnosMenu {
 
 	}
 
-	private static int calcularNotaMedia(int[] arrayNotas) {
-		int sumatorio = 0, resultado;
+	private static double calcularNotaMedia(double[] arrayNotas) {
+		double sumatorio = 0, resultado;
 		for (int i = 0; i < arrayNotas.length; i++) {
 			sumatorio = arrayNotas[i] + sumatorio;
 		}
@@ -163,7 +163,7 @@ public class Ejercicio5_notasAlumnosMenu {
 		return (int) Math.floor(Math.random() * (10 - 1 + 1) + 1);
 	}
 
-	private static void cargarArray(int[] array_a_cargar) {
+	private static void cargarArray(double[] array_a_cargar) {
 
 		for (int i = 0; i < array_a_cargar.length; i++) {
 			array_a_cargar[i] = numAleatorio1_10(); // carga del array con el metodo aleatorio.
