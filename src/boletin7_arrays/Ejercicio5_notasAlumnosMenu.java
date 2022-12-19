@@ -85,7 +85,7 @@ public class Ejercicio5_notasAlumnosMenu {
 			break;
 		case 5:
 			 resul=alumnosPorDebajoMedia(notas);
-			 System.out.println("Numero de alumnos por debajo de la media: "+resul);
+	
 			 System.out.println("------------------------");
 				System.out.println("El numero de alumnos por debajo de la media:  " + resul + " |");
 				System.out.println("------------------------");
